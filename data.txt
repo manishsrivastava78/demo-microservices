@@ -1,0 +1,3 @@
+NAME                  TYPE           CLUSTER-IP      EXTERNAL-IP                                                                PORT(S)                                       AGE
+jenkins               LoadBalancer   10.100.11.242   adec300aaff5f4c9fb67726af98e032b-1269003035.ap-south-1.elb.amazonaws.com   8080:31383/TCP,50000:32310/TCP,80:30093/TCP   37h
+pf-employeesservice   LoadBalancer   10.100.46.215   acf65455c18544b81bb96627d60f95c3-1698592469.ap-south-1.elb.amazonaws.com   8080:31374/TCP                                23m
