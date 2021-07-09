@@ -46,6 +46,13 @@ public class DataBase {
 		emp.setEmpId("436");
 		emp.setLocation("Stockholm");
 		employees.add(emp);
+		emp = new Employee();
+		emp.setFirstName("Test");
+		emp.setLastName("Larsen");
+		emp.setDepartment("admin");
+		emp.setEmpId("777");
+		emp.setLocation("Stockholm");
+		employees.add(emp);
 		
 	
 	}
