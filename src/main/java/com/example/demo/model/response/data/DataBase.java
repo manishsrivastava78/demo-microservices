@@ -53,6 +53,13 @@ public class DataBase {
 		emp.setEmpId("777");
 		emp.setLocation("Stockholm");
 		employees.add(emp);
+		emp = new Employee();
+		emp.setFirstName("Test1");
+		emp.setLastName("Larsen");
+		emp.setDepartment("admin");
+		emp.setEmpId("888");
+		emp.setLocation("London");
+		employees.add(emp);
 		
 	
 	}
