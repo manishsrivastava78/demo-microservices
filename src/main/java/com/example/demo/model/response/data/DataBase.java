@@ -12,7 +12,7 @@ public class DataBase {
 	
 	static {
 		Employee emp = new Employee();
-		emp.setFirstName("Emma");
+		emp.setFirstName("Manish");
 		emp.setLastName("Jones");
 		emp.setDepartment("computers");
 		emp.setEmpId("123");
