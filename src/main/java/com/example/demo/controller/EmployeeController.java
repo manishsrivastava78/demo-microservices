@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.response.Employee;
 import com.example.demo.model.response.data.DataBase;
+import com.example.demo.model.response.exception.NotFound;
 
 @RestController
 @RequestMapping("employees")
@@ -26,7 +27,10 @@ public class EmployeeController {
 	
 	@GetMapping(path="/{empId}")
 	public Employee getUserById(@PathVariable String empId) {
-		return DataBase.getEmployeeById(empId);
+		Employee e  =DataBase.getEmployeeById(empId);
+		if(e == null)
+			throw new NotFound();
+		return e;
 		}
 		
 	}
