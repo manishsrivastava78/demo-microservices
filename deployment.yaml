@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: employeesservice
-        image: manishsrivastava78/demo-employees:changeMePlease
+        image: manishsrivastava78/employees:changeMePlease
         ports:
         - containerPort: 8080
         resources:
