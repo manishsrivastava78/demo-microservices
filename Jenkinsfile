@@ -68,7 +68,7 @@
 					chmod +x ./kubectl
 					./kubectl apply -f ./configmap.yaml
 					./kubectl apply -f ./secret.yaml
-					./kubectl delete -f ./deployment.yaml
+					
 					cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl apply -f -
 					 ./kubectl apply -f ./service.yaml
 					'''
