@@ -30,18 +30,20 @@
 				}
 			}
 			
-	stage('Code Quality Check via SonarQube') {
+			
+stage('Code Quality Check via SonarQube') {
  steps {
     script {
        def scannerHome = tool 'sonarqubeScanner';
            withSonarQubeEnv("sonarqube_server") {
            sh "${tool("sonarqubeScanner")}/bin/sonar-scanner \
-           -Dsonar.projectKey=demo-microservice-1 \
+           -Dsonar.projectKey=demo-microservice \
            -Dsonar.sources=. \
            -Dsonar.java.binaries=**/target/classes"
 		   }
          }
        }
+	}
         
 			stage('docker build') {
 				steps{
