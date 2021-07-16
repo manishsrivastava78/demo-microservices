@@ -31,8 +31,6 @@ public class UserController {
 	@GetMapping(produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public ResponseEntity<UserRest> getUserByLimit(@RequestParam(value="page",required=false,defaultValue="1") int page, @RequestParam(value="limit",required=false,defaultValue="30") int limit) {
 		
-		UserRest rest = new UserRest("duggu","srivastava");
-		
 		return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
 	}
 	
