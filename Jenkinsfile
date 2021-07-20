@@ -23,9 +23,7 @@
 					sh script: '''
 					#!/bin/bash 
 					cd $WORKSPACE/demo-microservices/
-				    echo $PATH
-					mvn --version
-					mvn install
+				    mvn install
 					'''
 				}
 			}
@@ -45,19 +43,9 @@ stage('Code Quality Check via SonarQube') {
        }
 	}
         
-	    stage("Quality Gate"){
-		    steps {
-    script {
-  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-    if (qg.status != 'OK') {
-      error "Pipeline aborted due to quality gate failure: ${qg.status}"
-    }
-  }
-}
-		    }}	  
+	    
 			
-			stage('docker build') {
+			stage('Docker build') {
 				steps{
 					sh script: '''
 					#!/bin/bash
@@ -67,7 +55,7 @@ stage('Code Quality Check via SonarQube') {
 				}
 			}
                     
-			stage('docker login') {
+			stage('Docker login') {
 				steps{
 					sh(script: """
 						docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -112,6 +100,16 @@ stage('Code Quality Check via SonarQube') {
 					
 					'''
 					}
+			}
+			
+			stage('Run functional tests'){
+				steps{
+					sh script: '''
+					#!/bin/bash 
+					cd $WORKSPACE/demo-microservices/
+				    mvn -f ./test gauge:execute -DspecDir=./test/specs
+					'''
+				}
 			}
    	}
 }
