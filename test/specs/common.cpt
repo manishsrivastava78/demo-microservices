@@ -1,0 +1,6 @@
+# request setup
+* reset rest-assured
+* reset scenario store
+* show request
+* show response
+* set base URI
