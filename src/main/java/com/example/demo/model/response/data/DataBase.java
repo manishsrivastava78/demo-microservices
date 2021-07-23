@@ -43,7 +43,7 @@ public class DataBase {
 		emp.setFirstName("Katja");
 		emp.setLastName("Larsen");
 		emp.setDepartment("admin");
-		emp.setEmpId("436");
+		emp.setEmpId("4316");
 		emp.setLocation("Stockholm");
 		employees.add(emp);
 		emp = new Employee();
