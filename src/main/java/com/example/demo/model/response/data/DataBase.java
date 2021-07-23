@@ -22,7 +22,7 @@ public class DataBase {
 		emp.setFirstName("Pete");
 		emp.setLastName("Gates");
 		emp.setDepartment("finance");
-		emp.setEmpId("124");
+		emp.setEmpId("1224");
 		emp.setLocation("Paris");
 		employees.add(emp);
 		emp = new Employee();
