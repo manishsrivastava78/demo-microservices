@@ -1,4 +1,4 @@
-	pipeline {
+pipeline {
    		agent { 
             kubernetes{
                 label 'jenkins-slave'
@@ -29,7 +29,31 @@
 			}
 			
 			
-
+stage('Code Quality Check via SonarQube') {
+ steps {
+    script {
+       def scannerHome = tool 'sonarqubeScanner';
+           withSonarQubeEnv("sonarqube_server") {
+           sh "${tool("sonarqubeScanner")}/bin/sonar-scanner \
+           -Dsonar.projectKey=demo-microservice \
+           -Dsonar.sources=. \
+           -Dsonar.java.binaries=**/target/classes"
+		   }
+         }
+       }
+	}
+        
+	       stage("Quality Gate"){
+		    steps {
+    script {
+  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+    if (qg.status != 'OK') {
+      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    }
+  }
+}
+		    }}
 			
 			stage('Docker build') {
 				steps{
@@ -65,11 +89,11 @@
 					#get kubectl for this demo
 					curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 					chmod +x ./kubectl
-					./kubectl  -n microservices apply -f ./configmap.yaml
-					./kubectl  -n microservices apply -f ./secret.yaml
+					./kubectl apply -f ./configmap.yaml
+					./kubectl apply -f ./secret.yaml
 					
-					cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl  -n microservices  apply -f -
-					 ./kubectl  -n microservices apply -f ./service.yaml
+					cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl apply -f -
+					 ./kubectl apply -f ./service.yaml
 					'''
 				}
 			}
