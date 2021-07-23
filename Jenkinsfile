@@ -65,11 +65,11 @@
 					#get kubectl for this demo
 					curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 					chmod +x ./kubectl
-					./kubectl -n microservices apply -f ./configmap.yaml
-					./kubectl  -n microservices apply -f ./secret.yaml
+					./kubectl  apply -f ./configmap.yaml
+					./kubectl apply -f ./secret.yaml
 					
-					cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl  -n microservices apply -f -
-					 ./kubectl  -n microservices apply -f ./service.yaml
+					cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl  apply -f -
+					 ./kubectl apply -f ./service.yaml
 					'''
 				}
 			}
