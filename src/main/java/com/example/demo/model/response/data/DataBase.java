@@ -16,7 +16,7 @@ public class DataBase {
 		emp.setLastName("Jones");
 		emp.setDepartment("computers");
 		emp.setEmpId("123");
-		emp.setLocation("Gurgaon");
+		emp.setLocation("Delhi");
 		employees.add(emp);
 		emp = new Employee();
 		emp.setFirstName("Pete");
