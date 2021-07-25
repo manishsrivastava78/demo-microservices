@@ -21,8 +21,8 @@
         </dependency>
 		<dependency>
 			<groupId>com.tcs.eas.api.tools</groupId>
-    <artifactId>gauge-common-lib</artifactId>
-    <version>1.0</version>
+			<artifactId>gauge-common-lib</artifactId>
+			<version>1.0</version>
 	</dependency>
     </dependencies>
 

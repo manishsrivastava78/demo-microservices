@@ -54,5 +54,18 @@
 			</plugin>
 		</plugins>
 	</build>
+ <distributionManagement>
+	<repository>
+		<id>platfrom</id>
+		<name>Internal Releases</name>
+		<url>http://52.14.208.215:8081/repository/platfrom-maven-releases/</url>
+	</repository>
+ 
+	<snapshotRepository>
+		<id>platfrom</id>
+		<name>Internal Releases</name>
+		<url>http://52.14.208.215:8081/repository/platfrom-maven-snapshots/</url>
+	</snapshotRepository>
 
+</distributionManagement>
 </project>
