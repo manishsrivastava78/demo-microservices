@@ -25,7 +25,8 @@ pipeline {
 					cd $WORKSPACE/demo-microservices/
 				    	'''
 					withMaven(mavenSettingsConfig: '409c7e8e-5ef0-45d2-a2aa-d476491023eb', mavenLocalRepo:".repository") {
- 					 sh "mvn clean deploy"
+ 					 sh "mvn help:effective-settings"
+					 sh "mvn clean deploy"
 					}
 				}
 			}
