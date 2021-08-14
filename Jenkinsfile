@@ -26,7 +26,7 @@
 				    		
 					'''
 					 configFileProvider([configFile(fileId: '409c7e8e-5ef0-45d2-a2aa-d476491023eb', variable: 'MAVEN_GLOBAL_SETTINGS')]) {
-                   				 sh 'mvn -gs $MAVEN_GLOBAL_SETTINGS deploy'
+                   				 sh 'mvn -gs $MAVEN_GLOBAL_SETTINGS install'
 					}
 				}
 			}
