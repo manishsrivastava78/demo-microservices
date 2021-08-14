@@ -40,7 +40,7 @@ stage('Code Quality Check via SonarQube') {
            sh "${tool("sonarqubeScanner")}/bin/sonar-scanner \
            -Dsonar.projectKey=demo-microservice \
            -Dsonar.sources=. \
-           -Dsonar.java.binaries=**/target/classes"
+           -Dsonar.java.binaries=. \"
 		   }
          }
        }
