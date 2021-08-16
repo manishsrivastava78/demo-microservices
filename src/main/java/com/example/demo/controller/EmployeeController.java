@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +27,8 @@ public class EmployeeController {
 	 */
 	private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 	
+	private final String KONG_REQ_ID = "kong-request-id";
+	
 	@GetMapping(produces= {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody ResponseEntity<List<Employee>> getAll(@RequestHeader Map<String, String> headers) {
 		logger.info("Getting list of all employees...");
@@ -34,7 +36,15 @@ public class EmployeeController {
 	    	logger.info(String.format("Header '%s' = %s", key, value));
 	    	System.out.println(String.format("Header '%s' = %s", key, value));
 	    });
-	    return new ResponseEntity<List<Employee>>(DataBase.getEmployees(), HttpStatus.OK);
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+	    responseHeaders.set(KONG_REQ_ID,headers.get(KONG_REQ_ID) == null ? "NOT SET KONG ID" : headers.get(KONG_REQ_ID));
+
+	    return ResponseEntity.ok()
+	      .headers(responseHeaders)
+	      .body(DataBase.getEmployees());
+	    
+	    //return new ResponseEntity<List<Employee>>(DataBase.getEmployees(), HttpStatus.OK);
 	}
 	
 	@GetMapping(path="/{empId}")
