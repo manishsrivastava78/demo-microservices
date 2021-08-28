@@ -36,7 +36,7 @@ pipeline {
 					sh script: '''
 					#!/bin/bash
 					cd $WORKSPACE/demo-microservices/
-					docker build -t manishsrivastava78/employees:${BUILD_NUMBER} .
+					docker build -t manishsrivastavaggn/employees:${BUILD_NUMBER} .
 					'''
 				}
 			}
@@ -52,7 +52,7 @@ pipeline {
             stage('Push docker image') {
 				steps{
 					sh(script: """
-						docker push manishsrivastava78/employees:${BUILD_NUMBER}
+						docker push manishsrivastavaggn/employees:${BUILD_NUMBER}
 					""")
 				}
 			}
