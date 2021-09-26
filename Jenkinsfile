@@ -41,7 +41,7 @@ pipeline {
                 sh script: '''
                 #!/bin/bash
                 cd $WORKSPACE/demo-microservices/
-                docker build -t manishsrivastava78/employees .
+                docker build -t manishsrivastavaggn/employees .
                 '''
             }
         }
@@ -54,10 +54,42 @@ pipeline {
             }
         }     
 	
-        
+             stage('Push docker image') {
+            steps{
+                sh(script: """
+                    docker push manishsrivastavaggn/employees
+                """)
+            }
+        }
        
-        
+             stage('Deploy microservice') {
+            steps{
+                sh script: '''
+					#!/bin/bash
+					cd $WORKSPACE/demo-microservices/
+                #get kubectl for this demo
+                curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+                chmod +x ./kubectl
+                ./kubectl -n app apply -f ./configmap.yaml
+                ./kubectl -n app apply -f ./secret.yaml
+                ./kubectl -n app apply -f ./deployment.yaml
+                ./kubectl -n app apply -f ./service.yaml
+                '''
+        }
+    }
 
-    
+       stage('GET microservice URL') {
+            steps{
+                sh script: '''
+                #!/bin/bash
+                 #!/bin/bash
+                cd $WORKSPACE/demo-microservices/
+                #get kubectl for this demo
+                curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+                chmod +x ./kubectl
+                ./kubectl -n app get svc pf-employeesservice -o json  | jq .status.loadBalancer.ingress[0].hostname
+                '''
+        }
+    }
 }
 }
