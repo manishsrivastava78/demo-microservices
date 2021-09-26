@@ -62,21 +62,22 @@ pipeline {
             }
         }
        
-             stage('Deploy microservice') {
-            steps{
-                sh script: '''
-					#!/bin/bash
-					cd $WORKSPACE/demo-microservices/
-                #get kubectl for this demo
-                curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-                chmod +x ./kubectl
-                ./kubectl -n app apply -f ./configmap.yaml
-                ./kubectl -n app apply -f ./secret.yaml
-                cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl apply -f -
-                ./kubectl -n app apply -f ./service.yaml
-                '''
-        }
-    }
+           stage('Deploy microservice') {
+				steps{
+					sh script: '''
+						#!/bin/bash
+						cd $WORKSPACE/demo-microservices/
+					#get kubectl for this demo
+					curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+					chmod +x ./kubectl
+					./kubectl -n app apply -f ./configmap.yaml
+					./kubectl  -n app apply -f ./secret.yaml
+					
+					cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl  -n app  apply -f -
+					 ./kubectl  -n app  apply -f ./service.yaml
+					'''
+				}
+			}
 
        stage('GET microservice URL') {
             steps{
