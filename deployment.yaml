@@ -5,7 +5,7 @@ metadata:
   labels:
     app: employeesservice
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: employeesservice
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: employeesservice
-        image: manishsrivastava78/employees:changeMePlease
+        image: manishsrivastavaggn/employees:changeMePlease
         ports:
         - containerPort: 8080
         resources:
