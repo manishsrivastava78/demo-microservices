@@ -72,7 +72,7 @@ pipeline {
                 chmod +x ./kubectl
                 ./kubectl -n app apply -f ./configmap.yaml
                 ./kubectl -n app apply -f ./secret.yaml
-                ./kubectl -n app apply -f ./deployment.yaml
+                cat ./deployment.yaml | sed s/changeMePlease/${BUILD_NUMBER}/g | ./kubectl apply -f -
                 ./kubectl -n app apply -f ./service.yaml
                 '''
         }
