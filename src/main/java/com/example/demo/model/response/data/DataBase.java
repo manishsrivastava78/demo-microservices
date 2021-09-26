@@ -40,7 +40,7 @@ public class DataBase {
 		emp.setLocation("New York");
 		employees.add(emp);
 		emp = new Employee();
-		emp.setFirstName("Katja");
+		emp.setFirstName("Katjaa");
 		emp.setLastName("Larsen");
 		emp.setDepartment("admin");
 		emp.setEmpId("4316");
