@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class MsMonileAppApplicationTests {
 
 	@Test
-	void contextLoads(int x) {
+	void contextLoads() {
 	}
 
 }
