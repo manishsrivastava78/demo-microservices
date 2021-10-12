@@ -57,18 +57,14 @@
 			</plugin>
 		</plugins>
 	</build>
- <distributionManagement>
-	<repository>
-		<id>platfrom</id>
-		<name>Internal Releases</name>
-		<url>${nexus.server.http.scheme}://${nexus.server.host}:${nexus.server.port}/repository/maven-releases/</url>
-	</repository>
- 
-	<snapshotRepository>
-		<id>platfrom</id>
-		<name>Internal Releases</name>
-		<url>${nexus.server.http.scheme}://${nexus.server.host}:${nexus.server.port}/repository/maven-snapshots/</url>
-	</snapshotRepository>
-
+<distributionManagement>
+   <snapshotRepository>
+		<id>maven-snapshots</id>
+		<url>http://ad717a954cbf14282bfd3404e52941a3-351414278.us-east-1.elb.amazonaws.com:8081/repository/maven-snapshots/</url>
+   </snapshotRepository>
+     <repository>
+		<id>maven-releases</id>
+		<url>http://ad717a954cbf14282bfd3404e52941a3-351414278.us-east-1.elb.amazonaws.com:8081/repository/maven-releases/</url>
+   </repository>
 </distributionManagement>
 </project>
